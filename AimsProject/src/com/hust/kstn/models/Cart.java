@@ -19,7 +19,24 @@ public class Cart {
 			itemsInCart[qtyOrdered++] = disc;
 			System.out.println("The disc [" + disc.getTitle() + "] has been added successfully!");
 		} else {
-			System.out.println("The cart is almost full, cannot add disc [" + disc.getTitle() + "]!!!");
+			System.out.println("The cart is full, cannot add disc [" + disc.getTitle() + "]!!!");
+		}
+	}
+	
+	public void addDVD(DigitalVideoDisc disc1, DigitalVideoDisc disc2) {
+		addDVD(disc1);
+		addDVD(disc2);
+	}
+	
+//	public void addDVD(DigitalVideoDisc[] discs) {
+//		for (DigitalVideoDisc item: discs) {
+//			addDVD(item);
+//		}
+//	}
+	
+	public void addDVD(DigitalVideoDisc ...discs) {
+		for (DigitalVideoDisc item: discs) {
+			addDVD(item);
 		}
 	}
 	

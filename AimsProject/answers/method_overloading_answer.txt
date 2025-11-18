@@ -1,0 +1,7 @@
+...Thử thêm phương thức addDVD(DigitalVideoDisc …discs), chuyện gì xảy ra khi thêm phương thức này, tại sao? Bạn lựa chọn phương án nào để giải quyết?
+1. Sau khi thêm phương thức trên, chương trình báo lỗi:
+- Duplicate method addDVD(DigitalVideoDisc[]) in type Cart
+- Duplicate method addDVD(DigitalVideoDisc...) in type Cart
+2. Vì trong java, tham số varargs thực chất được biên dịch thành mảng (DigitalVideoDisc[]), do đó xảy ra hiện tượng trùng chữ ký.
+3. Phương án giải quyết: Giữ addDVD(DigitalVideoDisc disc1, DigitalVideoDisc disc2) và thay addDVD(DigitalVideoDisc[] discs) bằng addDVD(DigitalVideoDisc ...discs).
+Lý do: varargs flexible hơn, vừa sử dụng được kiểu addDVD(x, y, z, t) mà vẫn cho phép truyền mảng addDVD(arr).
