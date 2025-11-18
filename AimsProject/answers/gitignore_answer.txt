@@ -1,0 +1,16 @@
+1. Tại sao những đường dẫn trên nên được thêm vào .gitignore (nếu không thêm thì sao)?
+Nên thêm những đường dẫn trên vào .gitignore để bỏ qua (không theo dõi) nhưng file/thư mục đó, vì:
+- Chúng không phải là file mã nguồn, mà là extension/plugin/cấu hình/output tạm thời..., phụ thuộc vào từng máy/IDE khác nhau, dễ gây xung đột khi làm việc nhóm.
+- Nếu không thêm vào .gitignore, chúng sẽ được theo dõi, gây commit/diff rác đối với các output tạm thời, và những người pull về bắt buộc phải dùng đúng cấu hình đó.
+- Chỉ trong trường hợp muốn đồng bộ style/format thống nhất, thì không cần thêm vào .gitignore một số file, còn lại vẫn nên thêm vào. 
+2. Nếu sử dụng những công cụ khác để lập trình Java (như IntelliJ IDEA hoặc VSCode), những đường dẫn nào sẽ được thêm vào .gitignore?
+- Với IntelliJ IDEA: .idea/, *.iml, out/
+- Với VSCode: .vscode/, bin/, out/
+3. Trong trường hợp bạn đã lỡ commit các file tạm lên Git, nhưng sau đó bạn đã thêm chúng vào .gitignore và muốn Git ngừng theo dõi chúng mà không xóa khỏi máy, bạn sẽ cần thực hiện những thao tác nào?
+1> Dùng lệnh git rm -r --cached . để gỡ hết khỏi index (danh sách mà git đang theo dõi).
+2> Sau khi đã thêm file tạm vào .gitignore, dùng lệnh git add . để thêm lại hết các file/folder vào lại index (bỏ qua các file/folder được list trong .gitignore).
+3> Dùng lệnh git commit -m "chore: stop tracking some temp files"
+4> Dùng lệnh git push để đẩy commit lên remote
+Lưu ý: 
+- Có thể thay bước 1> và 2> bằng git rm -r --cached .temp .vscode bin nếu chỉ muốn gỡ một số đường dẫn đó khỏi index.
+- .gitignore chỉ quyết định những gì được add vào index trong tương lai, nếu file đã lọt vào index thì git sẽ theo dõi nó. Trong trường hợp này, kể cả nếu thêm đường dẫn file tạm vào .gitignore, rồi git commit lại thì các file tạm vẫn sẽ tiếp tục được theo dõi.
