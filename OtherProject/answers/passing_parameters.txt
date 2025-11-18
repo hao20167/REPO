@@ -1,0 +1,75 @@
+1. Tại sao sau khi chạy phương thức swap(s1,s2) thì tên của hai học sinh vẫn không thay đổi? Từ đó, Java là ngôn ngữ truyền tham trị hay truyền tham chiếu?
+- s1, s2 là các biến tham chiếu trỏ đến 2 đối tượng Student (1, "A") (2, "B") trên heap
+- Trong hàm swap, java truyền bản sao giá trị tham chiếu của s1, s2 vào o1, o2
+- Thực hiện hoán đổi o1, o2 chỉ thay đổi bản sao tham chiếu trong stack, không làm thay đổi s1, s2 ở hàm main
+-> Tên của 2 học sinh không thay đổi.
+=> Java là ngôn ngữ truyền tham trị
+
+2. Bạn làm thế nào để phương thức swap hoạt động (thật sự tráo đổi thông tin của hai đối tượng được truyền vào)?
+Thêm các hàm setter và getter phù hợp cho Student, sử dụng code sau đây để phương thức swap hoạt động
+public static void swap(Object o1, Object o2) {
+    int id1 = o1.getId();
+    String name1 = o1.getName();
+    o1.setId(o2.getId());
+    o1.setName(o2.getName());
+    o2.setId(id1);
+    o2.setName(name1);
+}
+
+3. Vẽ sơ đồ minh họa cho các vùng nhớ stack và heap trong trường hợp này để chứng minh cách bạn đưa ra đã hoạt động đúng.
+1> 
+trước khi gọi hàm swap
+----stack----|----heap----
+      s1     |  (1, "A")
+--------------------------
+      s2     |  (2, "B")
+--------------------------
+bên trong hàm swap
+----stack----|----heap----
+      o1     |  (1, "A")
+--------------------------
+      o2     |  (2, "B")
+--------------------------
+
+2> id1 = o1.getId(); name1 = o1.getName();
+
+----stack----|----heap----
+      o1     |  (1, "A")
+--------------------------
+      o2     |  (2, "B")
+--------------------------
+      id1    |     1
+--------------------------
+     name1   |     "A"
+--------------------------
+
+3> o1.setId(o2.getId()); o1.setName(o2.getName());
+
+----stack----|----heap----
+      o1     |  (2, "B")
+--------------------------
+      o2     |  (2, "B")
+--------------------------
+      id1    |     1
+--------------------------
+     name1   |     "A"
+--------------------------
+
+4> o2.setId(id1); o2.setName(name1);
+
+----stack----|----heap----
+      o1     |  (2, "B")
+--------------------------
+      o2     |  (1, "A")
+--------------------------
+      id1    |     1
+--------------------------
+     name1   |     "A"
+--------------------------
+
+kết thúc swap
+----stack----|----heap----
+      s1     |  (2, "B")
+--------------------------
+      s2     |  (1, "A")
+--------------------------
