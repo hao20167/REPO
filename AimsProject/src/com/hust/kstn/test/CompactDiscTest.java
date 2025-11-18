@@ -9,7 +9,8 @@ public class CompactDiscTest {
 
 	public static void main(String[] args) {
 		List<Track> tracks = new ArrayList<>();
-		CompactDisc CD = new CompactDisc(tracks, "007", "99%", "Pop", 99.36f);
+		// public CompactDisc(List<Track> tracks, String id, String title, float cost, String category)
+		CompactDisc CD = new CompactDisc(tracks, "007", "99%", 99.36f, "Pop");
 		System.out.println(CD.toString());
 		
 		Track track1 = new Track("Chim soul", 236);

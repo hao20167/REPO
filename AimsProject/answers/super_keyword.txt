@@ -1,0 +1,5 @@
+Hãy nêu ý nghĩa của từ khoá super trong ví dụ cho mã nguồn của lớp Book ở phía trên.
+1. super(title, cost, category);
+- Đây là lệnh gọi constructor của lớp cha (Media) để khởi tạo các thuộc tính kế thừa: id, title, cost, category.
+2. super.toString()
+- Tái sử dụng phương thức toString() đã được định nghĩa trong lớp cha (Media), tránh lặp code và giữ định dạng thống nhất.

@@ -3,32 +3,28 @@ package com.hust.kstn.models;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Book {
+public class Book extends Media {
 	private List<BookAuthor> authors = new ArrayList<>();
-	private String id, title, category;
-	private float cost;
 	private int numOfTokens;
 	
 	public Book(List<BookAuthor> authors, String id, String title, float cost) {
+		super(id, title, cost);
 		this.authors = authors;
-		this.id = id;
-		this.title = title;
-		this.cost = cost;
+		this.authors = authors;
 	}
 	
-	public Book(List<BookAuthor> authors, String id, String title, String category, float cost) {
+	public Book(List<BookAuthor> authors, String id, String title, float cost, String category) {
 		this(authors, id, title, cost);
-		this.category = category;
+		super.setCategory(category);
 	}
 	
-	public Book(List<BookAuthor> authors, String id, String title, String category, float cost, int numOfTokens) {
-		this(authors, id, title, cost);
-		this.category = category;
+	public Book(List<BookAuthor> authors, String id, String title, float cost, String category, int numOfTokens) {
+		this(authors, id, title, cost, category);
 		this.numOfTokens = numOfTokens;
 	}
 	
 	@Override
 	public String toString() {
-		return "Book[" + id + "][" + title + "][" + cost + "][" + category + "][" + numOfTokens + "]" + "\nAuthors: " + authors;
+		return "Book-" + super.toString() +  "[" + numOfTokens + "]" + "\nAuthors: " + authors;
 	}
 }

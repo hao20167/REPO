@@ -3,21 +3,17 @@ package com.hust.kstn.models;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CompactDisc {
+public class CompactDisc extends Media {
 	private List<Track> tracks = new ArrayList<>();
-	private String id, title, category;
-	private float cost;
-	public CompactDisc(List<Track> tracks, String id, String title, String category, float cost) {
+	
+	public CompactDisc(List<Track> tracks, String id, String title, float cost, String category) {
+		super(id, title, cost, category);
 		this.tracks = tracks;
-		this.id = id;
-		this.title = title;
-		this.category = category;
-		this.cost = cost;
 	}
 	
 	public void addTrack(Track track) {
 		tracks.add(track);
-		System.out.println("Added track[" + track.getTitle() + "] to CD[" + title + "]");
+		System.out.println("Added track[" + track.getTitle() + "] to CD[" + super.getTitle() + "]");
 	}
 	
 	public void addTrack(Track ...tracks2) {
@@ -29,11 +25,11 @@ public class CompactDisc {
 	public void removeTrack(Track track) {
 		int pos = tracks.indexOf(track);
 		if (pos == -1) {
-			System.out.println("Track[" + track.getTitle() + "] not found in the CD[" + title + "], can not remove!");
+			System.out.println("Track[" + track.getTitle() + "] not found in the CD[" + super.getTitle() + "], can not remove!");
 			return;
 		}
 		tracks.remove(pos);
-		System.out.println("Removed track[" + track.getTitle() + "] from CD[" + title + "]");
+		System.out.println("Removed track[" + track.getTitle() + "] from CD[" + super.getTitle() + "]");
 	}
 	
 	public int totalLength() {
@@ -49,6 +45,6 @@ public class CompactDisc {
 		if (tracks.size() < 1) {
 			return "Empty CD";
 		}
-		return "CD[" + id + "][" + title + "][" + cost + "][" + category + "]" + "\nTracks: " + tracks + "\n[Total length: " + totalLength() + "]";
+		return "CD-" + super.toString() + "\nTracks: " + tracks + "\n[Total length: " + totalLength() + "]";
 	}
 }

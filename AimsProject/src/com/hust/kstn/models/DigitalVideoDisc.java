@@ -1,51 +1,37 @@
 package com.hust.kstn.models;
 
-public class DigitalVideoDisc {
-	private static int nbDigitalVideoDiscs = 0;
-	private String id, title, category, director;
+public class DigitalVideoDisc extends Media {
+	private String director;
 	private int length;
-	private float cost;
 	private int quantity;
 	
-	public DigitalVideoDisc() { id = Integer.toString(++nbDigitalVideoDiscs); }
+	// Media(String id, String title, float cost, String category)
 	public DigitalVideoDisc(String title) {
-		this();
-		this.title = title;
+		super(title);
 		this.quantity = 1;
 	}
-	public DigitalVideoDisc(String category, String title, float cost) {
-		this(title);
-		this.category = category;
-		this.cost = cost;
+	
+	public DigitalVideoDisc(String title, float cost, String category) {
+		super(title, cost, category);
 	}
-	public DigitalVideoDisc(String director, String category, String title, float cost) {
-		this(category, title, cost);
+	
+	public DigitalVideoDisc(String title, float cost, String category, String director) {
+		this(title, cost, category);
 		this.director = director;
 	}
-	public DigitalVideoDisc(String id, String title, String category, String director, int length, float cost, int quantity) {
-		this(director, category, title, cost);
-		this.id = id;
+	
+	public DigitalVideoDisc(String id, String title, float cost, String category, String director, int length, int quantity) {
+		this(title, cost, category, director);
+		super.setId(id);
 		this.length = length;
 		this.quantity = quantity;
 	}
 	
-	public String getId() {
-		return id;
-	}
-	public String getTitle() {
-		return title;
-	}
-	public String getCategory() {
-		return category;
-	}
 	public String getDirector() {
 		return director;
 	}
 	public int getLength() {
 		return length;
-	}
-	public float getCost() {
-		return cost;
 	}
 	public int getQuantity() {
 		return quantity;
@@ -59,8 +45,6 @@ public class DigitalVideoDisc {
 	
 	@Override
 	public String toString() {
-//		float total = cost * quantity;
-//		return "[ID]: " + id + ", [Title]: " + title + ", [Cost]: " + cost + "/DVD, [Total]: " + total + ", [Length]: " + length + ", [Category]: " + category + ", [Director]: " + director);
-		return "DVD" + "[" + id + "]" + " - [" + title + "]" + " - [" + cost + "]" + " - [" + director + "]" + " - [" + length + "]" + " - [" + category + "]";
+		return "DVD-" + super.toString() + "[Director: " + director + "] - [Length: " + length + "] - [Quantity: " + quantity + "]"; 
 	}
 }
