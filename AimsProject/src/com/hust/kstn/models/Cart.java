@@ -17,9 +17,9 @@ public class Cart {
 	public void addDVD(DigitalVideoDisc disc) {
 		if (qtyOrdered < MAX_NUMBER_ORDERED) {
 			itemsInCart[qtyOrdered++] = disc;
-			System.out.println("The disc [" + disc.getTitle() + "] has been added successfully!");
+			System.out.println("The disc [" + disc.getTitle() + "] has been added successfully to the cart!");
 		} else {
-			System.out.println("The cart is full, cannot add disc [" + disc.getTitle() + "]!!!");
+			System.out.println("The cart is full, cannot add disc [" + disc.getTitle() + "] to the cart!!!");
 		}
 	}
 	
@@ -58,7 +58,7 @@ public class Cart {
 		for (int i = found + 1; i < qtyOrdered; i++)
 			itemsInCart[i - 1] = itemsInCart[i];
 		qtyOrdered--;
-		System.out.println("The disc [" + disc.getTitle() + "] has been removed successfuly");
+		System.out.println("The disc [" + disc.getTitle() + "] has been removed successfully from the cart!");
 	}
 	
 	public float calculateTotalCost() {
